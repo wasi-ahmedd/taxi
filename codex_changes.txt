@@ -1,0 +1,24 @@
+Codex work summary
+Date: 2026-03-12
+
+1. Applied the Codex patch from codex.patch.
+   - The patch file had CRLF line endings, which caused Git on Windows to reject the binary patch section for README.md.
+   - Normalized the patch to LF and applied it successfully.
+   - Resulting patch changes included:
+     - Added the new apps/api workspace with Express, PostgreSQL, auth, trips, drivers, reports, earnings, and socket support.
+     - Updated the web app dashboard and styling under apps/web.
+     - Updated README.md.
+     - Updated the root package.json for workspaces.
+
+2. Fixed npm run dev from the repo root.
+   - Replaced the root dev script with a cross-platform concurrently-based command so API and web start together on Windows.
+   - Added concurrently as a root dev dependency.
+   - Updated apps/api/src/config/env.js to use a local development default for DATABASE_URL:
+     postgresql://postgres:postgres@localhost:5432/taxi
+   - Added a root .gitignore to ignore node_modules, temporary logs, and apps/api/.env.
+
+3. Reinstalled dependencies and validated startup.
+   - Installed workspace dependencies from the repo root.
+   - Confirmed the API served successfully on http://localhost:4000/health.
+   - Confirmed the web app served successfully on http://localhost:3000.
+   - Stopped the background dev processes after validation so the repo was left ready for a clean manual start.
