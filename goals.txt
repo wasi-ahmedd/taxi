@@ -1,0 +1,224 @@
+You are a senior full-stack engineer helping implement a production-ready project.
+
+IMPORTANT:
+I already provided a project plan earlier. Previously you only copied that plan into README.md.
+Do NOT repeat or summarize the plan again.
+Do NOT just generate documentation.
+
+Your task is to **start implementing the system structure and codebase**.
+
+Project: Taxi Fleet Management System (for ~25 taxis)
+
+Goal:
+Build a web-based system that manages taxi bookings, driver assignments, trip tracking, and automatic earnings calculation.
+
+Focus on building a **working MVP backend and basic frontend**, not documentation.
+
+---
+
+TECH STACK
+
+Backend:
+Node.js
+Express.js
+
+Database:
+PostgreSQL
+
+Frontend:
+React (or simple Next.js)
+
+Realtime updates:
+Socket.io
+
+Maps (later stage):
+Google Maps API
+
+Deployment target:
+Railway / standard Node hosting
+
+---
+
+CORE SYSTEM MODULES TO IMPLEMENT
+
+1. Authentication
+
+* Driver login
+* Admin login
+* JWT authentication
+* Role based access (admin / driver)
+
+2. Driver Management
+   Admin can:
+
+* create drivers
+* update drivers
+* deactivate drivers
+
+Driver fields:
+id
+name
+phone
+car_number
+status (available / busy)
+created_at
+
+3. Trip Management
+
+Trip fields:
+id
+customer_name
+pickup_location
+destination
+assigned_driver_id
+fare
+status
+start_time
+end_time
+created_at
+
+Trip statuses:
+requested
+accepted
+started
+completed
+cancelled
+
+Admin abilities:
+
+* create trip
+* assign driver
+* view all trips
+* filter by date / driver
+
+Driver abilities:
+
+* view assigned trips
+* accept trip
+* start trip
+* complete trip
+* enter fare
+
+4. Earnings Calculation
+
+When a trip is completed:
+
+fare = X
+
+Owner commission = configurable (example: 20%)
+
+Calculate automatically:
+
+driver_earning
+owner_earning
+
+Store earnings in database.
+
+5. Reporting
+
+Admin dashboard should show:
+
+* total trips
+* total revenue
+* driver earnings
+* owner earnings
+* trips by driver
+* monthly report
+
+6. Driver Status System
+
+Driver status must automatically update:
+
+available → when idle
+busy → when trip accepted or started
+
+---
+
+DATABASE
+
+Create PostgreSQL schema with proper relations.
+
+Tables required:
+
+drivers
+trips
+earnings
+admins
+
+Use foreign keys where appropriate.
+
+---
+
+API STRUCTURE
+
+Organize backend like this:
+
+/src
+/controllers
+/routes
+/models
+/services
+/middleware
+/config
+
+Example routes:
+
+POST /auth/login
+POST /drivers
+GET /drivers
+POST /trips
+GET /trips
+PATCH /trips/:id/accept
+PATCH /trips/:id/start
+PATCH /trips/:id/complete
+
+---
+
+FRONTEND
+
+Create minimal frontend pages:
+
+Admin dashboard
+Driver dashboard
+Login page
+
+Driver dashboard should allow:
+
+* see assigned trips
+* accept trip
+* start trip
+* complete trip
+
+Admin dashboard should allow:
+
+* create trip
+* assign driver
+* view trip list
+* view reports
+
+---
+
+IMPORTANT DEVELOPMENT RULES
+
+1. Focus on working functionality first.
+2. Do NOT generate large documentation files.
+3. Only create README if needed for setup instructions.
+4. Prioritize backend implementation and database schema.
+5. Keep the code modular and clean.
+6. Use environment variables for configuration.
+7. Provide clear folder structure.
+
+---
+
+OUTPUT FORMAT
+
+Start by:
+
+1. Generating project folder structure
+2. Creating PostgreSQL schema
+3. Implementing backend API
+4. Creating minimal React frontend
+5. Providing instructions to run the project locally
+
+Do NOT rewrite the original plan again.
+Start building the system.
